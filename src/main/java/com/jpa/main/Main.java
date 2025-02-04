@@ -13,6 +13,7 @@ public class Main {
 
         BasicJpaController controller = new BasicJpaController();
         controller.basicTest(entityManager);
+        controller.searchTest(entityManager);
 
     }
 }

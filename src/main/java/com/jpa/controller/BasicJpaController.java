@@ -1,6 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.model.entity.SampleEntity;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -29,5 +30,19 @@ public class BasicJpaController {
 
         et.commit(); // 영속성 컨텍스트가 가지고 있는 sql문을 실행.
 
+
     }
+
+        public void searchTest(EntityManager em) {
+            EntityTransaction et = em.getTransaction();
+            et.begin();
+
+            SampleEntity sample = em.find(SampleEntity.class, 1L);
+            System.out.println(sample);
+            sample.setData("내가 수정한 것");
+
+            em.persist(sample);
+
+            et.commit();
+        }
 }
