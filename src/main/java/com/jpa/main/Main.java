@@ -14,7 +14,7 @@ public class Main {
         BasicJpaController controller = new BasicJpaController();
 //        controller.basicTest(entityManager);
 //        controller.searchTest(entityManager);
-//          controller.insertMember(entityManager);
-          controller.selectMember(entityManager);
+         controller.insertMember(entityManager);
+//          controller.selectMember(entityManager);
     }
 }
