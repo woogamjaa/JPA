@@ -22,10 +22,12 @@ public class BasicJpaController {
 
 
         SampleEntity sample2 = SampleEntity.builder()
-                .id(2L)
+                .id(5L)
                 .data("ㅇ어ㅘ 신기해 ! ")
                 .build();
 
+        sample2.setData("히히히 수정");
+        
         em.persist(sample2); // <persist 를 진행해야만 인서트가 들어감.
 
         et.commit(); // 영속성 컨텍스트가 가지고 있는 sql문을 실행.
