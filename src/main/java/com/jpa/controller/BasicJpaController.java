@@ -70,4 +70,10 @@ public class BasicJpaController {
             em.persist(m); //영속화 콘테스트에 올라가면서 DB 관리할 수 있게 처리한다.
             et.commit();
         }
+
+
+        public void selectMember(EntityManager em) {
+        MemberEntity member=em.find(MemberEntity.class, 1L);
+        System.out.println(member);
+        }
 }
