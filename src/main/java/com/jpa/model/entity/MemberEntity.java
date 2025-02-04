@@ -3,9 +3,19 @@ package com.jpa.model.entity;
 import com.jpa.common.Gender;
 import com.jpa.common.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 
 @Entity//(name="memberEntity") 엔티티명을 정할 수 있음
 @Table(name="MEMBER_ENTITY")//테이블 관련 설정을 하는 어노테이션

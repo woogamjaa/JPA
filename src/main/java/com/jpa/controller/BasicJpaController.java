@@ -1,5 +1,8 @@
 package com.jpa.controller;
 
+import com.jpa.common.Gender;
+import com.jpa.common.Role;
+import com.jpa.model.entity.MemberEntity;
 import com.jpa.model.entity.SampleEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
@@ -45,6 +48,26 @@ public class BasicJpaController {
 
             em.persist(sample);
 
+            et.commit();
+        }
+
+
+        public void insertMember(EntityManager em) {
+            EntityTransaction et = em.getTransaction();
+
+            et.begin();
+
+            MemberEntity m=MemberEntity.builder() //한개 row를 만들었다.
+
+                    .memberId("admin")
+                    .memberPwd("1234")
+                    .memberName("관리자")
+                    .memberAge(19)
+                    .memberGender(Gender.F)
+                    .role(Role.ADMIN)
+                    .build();
+
+            em.persist(m); //영속화 콘테스트에 올라가면서 DB 관리할 수 있게 처리한다.
             et.commit();
         }
 }
