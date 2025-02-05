@@ -1,6 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.common.Gender;
+import com.jpa.model.entity.LockerEntity;
 import com.jpa.model.entity.StudentEntity;
 import com.jpa.model.entity.dto.Address;
 import jakarta.persistence.EntityManager;
@@ -73,6 +74,31 @@ public class StudentController {
         });
         et.commit();
 
-        StudentEntity s= em.find(StudentEntity.class,16L); //16번 학생을 조회하는거.
+        StudentEntity s= em.find(StudentEntity.class,31L); //16번 학생을 조회하는거.
     }
+
+    //OneToOne관계 엔티티 이용하기
+    public void oneToOneTest(EntityManager em) {
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        LockerEntity locker1 = LockerEntity.builder()
+                .color("마젠타")
+                .level("11층")
+                .size("L")
+                .build();
+        em.persist(locker1);
+
+        StudentEntity s= StudentEntity.builder()
+                .studentName("아무개")
+                .grade(1)
+                .classNum(3)
+                .gender(Gender.F)
+                .address(Address.builder().build())
+                .birthday(new Date())
+                .locker(locker1)
+                .build();
+        em.persist(s);
+        et.commit();
+    }
+
 }

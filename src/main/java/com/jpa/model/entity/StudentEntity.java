@@ -22,6 +22,7 @@ public class StudentEntity {
 
 
     @Id
+    @Column(name="student_no")
     @GeneratedValue(generator = "seqstudentNo", strategy = GenerationType.SEQUENCE)
     private Long studentNo;
 
@@ -44,5 +45,10 @@ public class StudentEntity {
 
     @Embedded
     private Address address;
+
+
+    @OneToOne
+    @JoinColumn(name="locker_no", unique=true)
+    private LockerEntity locker;
 
 }
