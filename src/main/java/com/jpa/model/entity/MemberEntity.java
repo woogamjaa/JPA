@@ -61,4 +61,14 @@ public class MemberEntity {
     @Transient
     private List<String> names;
 
+    @Lob //clob
+    private String description;
+
+    @Lob //blob 정말 작은용량의 데이터 ex) 서명같은거.
+    private Byte[] bytes;
+
+    //sql문으로 컬럼을 만드는 구문을 작성
+    @Column(columnDefinition = "varchar2(20) default '없음' not null ")
+    private String phone;
+
 }
