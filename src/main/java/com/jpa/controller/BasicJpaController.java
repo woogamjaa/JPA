@@ -105,4 +105,7 @@ public class BasicJpaController {
         System.out.println(m); //알아서 jpa 가 객체로 만들어서 가져온다.
 
     }
+
+    public void insertStudent(EntityManager em) {}
+
 }

@@ -22,7 +22,7 @@ import java.util.List;
 
 //Table 레벨에서 다수 대상으로 유니크 조건을 걸 수있음.
 @Table(name="MEMBER_ENTITY" ,
-    uniqueConstraints = {@UniqueConstraint(name="uq_memberId_memberName", columnNames = {"member_id","membmerName"})},
+    uniqueConstraints = {@UniqueConstraint(name="uq_memberId_memberName", columnNames = {"member_id","memberName"})},
             indexes = {@Index(name="idx_memberId", columnList = "member_id,phone")
 })//테이블 관련 설정을 하는 어노테이션 //필드하나에 걸었는데 2,3개 대상으로 유니크를 걸때.
 @SequenceGenerator(name="seqMemberEntityNo",sequenceName = "seq_memberentity_no",allocationSize = 1, initialValue = 1)        //sequence객체를 생성하는 어노테이션 구문들
