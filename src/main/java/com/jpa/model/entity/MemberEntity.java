@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
 
 @Data
@@ -42,5 +43,11 @@ public class MemberEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date accessLog;
 
 }

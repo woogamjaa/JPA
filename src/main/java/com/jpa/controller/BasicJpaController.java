@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.Date;
+
 public class BasicJpaController {
     public void basicTest(EntityManager em) {
         EntityTransaction et = em.getTransaction();
@@ -75,5 +77,23 @@ public class BasicJpaController {
         public void selectMember(EntityManager em) {
         MemberEntity member=em.find(MemberEntity.class, 1L);
         System.out.println(member);
+        }
+
+        public void insertMember2(EntityManager em) {
+            EntityTransaction et = em.getTransaction();
+            et.begin();
+            MemberEntity m=MemberEntity.builder()
+                    .memberId("user01")
+                    .memberPwd("123456")
+                    .memberName("유저1")
+                    .memberAge(20)
+                    .memberGender(Gender.M)
+                    .role(Role.USER)
+                    .accessLog(new Date())
+                    .birthDay(new Date())
+                    .build();
+
+            em.persist(m);
+            et.commit();
         }
 }
