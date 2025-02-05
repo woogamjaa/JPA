@@ -96,4 +96,9 @@ public class BasicJpaController {
             em.persist(m);
             et.commit();
         }
+
+    public void selectMember2(EntityManager em, Long no) {
+        MemberEntity m=em.find(MemberEntity.class, no);
+        System.out.println(m);
+    }
 }

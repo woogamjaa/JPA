@@ -12,9 +12,11 @@ public class Main {
 
 
         BasicJpaController controller = new BasicJpaController();
-//        controller.basicTest(entityManager);
-//        controller.searchTest(entityManager);
-         controller.insertMember(entityManager);
-//          controller.selectMember(entityManager);
+    //        controller.basicTest(entityManager);
+    //        controller.searchTest(entityManager);
+    //        controller.insertMember(entityManager);
+    //        controller.selectMember(entityManager);
+//            controller.insertMember2(entityManager);
+              controller.selectMember2(entityManager,3L); //시퀀스 캐시 때문에 21 . 기본적으로 20개가 캐시값이 주어지고 NO캐시하면 안 주어짐
     }
 }
