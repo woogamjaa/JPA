@@ -2,6 +2,7 @@ package com.jpa.model.entity;
 
 import com.jpa.common.Gender;
 import com.jpa.common.Role;
+import com.jpa.model.entity.dto.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -49,5 +51,14 @@ public class MemberEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date accessLog;
+
+    @Embedded
+    private Address address;
+
+    @Transient
+    private String test; //DB랑 연동하는 필드가 아니다 라고 함.
+
+    @Transient
+    private List<String> names;
 
 }

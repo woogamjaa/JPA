@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.Date;
+import java.util.List;
 
 public class BasicJpaController {
     public void basicTest(EntityManager em) {
@@ -99,6 +100,9 @@ public class BasicJpaController {
 
     public void selectMember2(EntityManager em, Long no) {
         MemberEntity m=em.find(MemberEntity.class, no);
-        System.out.println(m);
+        m.setTest("우와!");
+        m.setNames(List.of("1","2","3"));
+        System.out.println(m); //알아서 jpa 가 객체로 만들어서 가져온다.
+
     }
 }
