@@ -3,12 +3,11 @@ package com.jpa.model.entity;
 import com.jpa.common.Gender;
 import com.jpa.model.entity.dto.Address;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -55,6 +54,8 @@ public class StudentEntity {
     private ClassRoomEntity classroom; //포린티 컬럼이 들어가는건 다대일에 서 다 쪽이다.
 
 
-
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "studentList")
+    private List<SubjectEntity> studentList=new ArrayList<>();
 
 }
