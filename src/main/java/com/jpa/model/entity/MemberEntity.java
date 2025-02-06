@@ -79,7 +79,7 @@ public class MemberEntity {
 
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist(){ // 빌더 패턴을 덮어쓰기 하는 거라고 봄.
         System.out.println("MemberEntity 영속화처리전 실행!");
         System.out.println(this);
         if(this.phone==null) this.phone="없음"; // 이런식으로 넣을 수 있음.  낫널 제약조건이 들어가도 상관없음.
