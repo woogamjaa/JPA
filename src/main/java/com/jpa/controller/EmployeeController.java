@@ -49,19 +49,19 @@ public class EmployeeController {
                 .department(d1)
                 .build();
         em.persist(e2);
-
         et.commit();
 
     }
 
     public void findEmployee(EntityManager em , Long pk) {
         em.clear();
-        EmployeeEntity e= em.find(EmployeeEntity.class, pk);
+        EmployeeEntity e= em.find(EmployeeEntity.class, 1);
         System.out.println(e);
     }
+
     public void findDepartment(EntityManager em, Long pk) {
         em.clear();
-        DepartmentEntity d= em.find(DepartmentEntity.class, pk);
+        DepartmentEntity d= em.find(DepartmentEntity.class, 2);
         System.out.println(d);
 
     }

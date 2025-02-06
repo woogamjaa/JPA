@@ -34,6 +34,5 @@ BasicJpaController controller = new BasicJpaController();
           c.insertEmployeeDept(entityManager);
           c.findEmployee(entityManager, 1L);
           c.findDepartment(entityManager, 1L);
-
     }
 }

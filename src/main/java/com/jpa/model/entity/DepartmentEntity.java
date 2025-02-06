@@ -12,8 +12,9 @@ import java.util.List;
 
 @Entity
 @Table(name="department")
-@SequenceGenerator(name="seqdepartmentNo", sequenceName = "seq_department_no", allocationSize=1 , initialValue=1)
+@SequenceGenerator(name="seqdepartmentNo", sequenceName = "seq_department_no", allocationSize=1)
 public class DepartmentEntity {
+
     @Id
     @Column(name="department_No")
     @GeneratedValue(generator = "seqdepartmentNo", strategy = GenerationType.SEQUENCE)
@@ -22,8 +23,7 @@ public class DepartmentEntity {
     @Column(name="department_name", nullable=false)
     private String departmentName;
 
-//    @JoinColumn(name="employee_Name")
-    @ToString.Exclude
-    @OneToMany(mappedBy="department")
+
+    @OneToMany(mappedBy="department") //employee에서 설정한 필드값
     private List<EmployeeEntity> employeeName;
 }

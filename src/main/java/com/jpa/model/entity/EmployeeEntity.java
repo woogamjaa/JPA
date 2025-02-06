@@ -2,10 +2,7 @@ package com.jpa.model.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="employee")
-@SequenceGenerator(name="seqemployeeNo", sequenceName = "seq_employee_no", allocationSize=1 , initialValue=1)
+@SequenceGenerator(name="seqemployeeNo", sequenceName = "seq_employee_no", allocationSize=1)
 public class EmployeeEntity {
 
     @Id
@@ -35,6 +32,8 @@ public class EmployeeEntity {
     @Column(name="salary")
     private Integer salary;
 
+    @ToString.Exclude
     @ManyToOne
+    @JoinColumn(name="department_ref") //포린키 값을 받는 컬럼이니까 . 컬럼이랑 똑같다. 제약조건 가능.
     private DepartmentEntity department;
 }
