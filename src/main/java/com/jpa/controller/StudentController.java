@@ -4,13 +4,11 @@ import com.jpa.common.Gender;
 import com.jpa.model.entity.ClassRoomEntity;
 import com.jpa.model.entity.LockerEntity;
 import com.jpa.model.entity.StudentEntity;
-import com.jpa.model.entity.dto.Address;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class StudentController {

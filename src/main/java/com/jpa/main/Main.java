@@ -2,6 +2,7 @@ package com.jpa.main;
 
 import com.jpa.common.JPATemplate;
 import com.jpa.controller.BasicJpaController;
+import com.jpa.controller.EmployeeController;
 import com.jpa.controller.StudentController;
 import jakarta.persistence.EntityManager;
 
@@ -19,7 +20,7 @@ StudentController studentController = new StudentController();
 //        studentController.oneToOneTest(entityManager);
 //        studentController.OneToManyTest(entityManager);
 //        studentController.oneToManySelect(entityManager,1L);
-          studentController.oneToManyTest2(entityManager);
+//        studentController.oneToManyTest2(entityManager);
 
 BasicJpaController controller = new BasicJpaController();
 //        controller.basicTest(entityManager);
@@ -29,6 +30,10 @@ BasicJpaController controller = new BasicJpaController();
 //        controller.insertMember2(entityManager);
 //        controller.selectMember2(entityManager,3L); //시퀀스 캐시 때문에 21 . 기본적으로 20개가 캐시값이 주어지고 NO캐시하면 안 주어짐
 
+        EmployeeController c = new EmployeeController();
+          c.insertEmployeeDept(entityManager);
+          c.findEmployee(entityManager, 1L);
+          c.findDepartment(entityManager, 1L);
 
     }
 }
