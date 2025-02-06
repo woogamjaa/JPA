@@ -4,6 +4,8 @@ package com.jpa.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,4 +38,17 @@ public class EmployeeEntity {
     @ManyToOne
     @JoinColumn(name="department_ref") //포린키 값을 받는 컬럼이니까 . 컬럼이랑 똑같다. 제약조건 가능.
     private DepartmentEntity department;
+
+    //세터를 만든다.
+    public void setDepartment(DepartmentEntity department) {
+        if (this.department != null && this.department.getEmployeeName()!=null) {
+            this.department.getEmployeeName().remove(this);
+        }
+        this.department = department;
+        if(this.department.getEmployeeName()==null) {
+            this.department.setEmployeeName(new ArrayList<>());
+        }
+        this.department.getEmployeeName().add(this);
+
+    }
 }

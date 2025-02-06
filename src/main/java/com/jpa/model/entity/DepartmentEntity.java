@@ -3,6 +3,7 @@ package com.jpa.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,5 +26,5 @@ public class DepartmentEntity {
 
 
     @OneToMany(mappedBy="department") //employee에서 설정한 필드값
-    private List<EmployeeEntity> employeeName;
+    private List<EmployeeEntity> employeeName=new ArrayList<>();
 }

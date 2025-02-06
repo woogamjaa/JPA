@@ -6,6 +6,8 @@ import com.jpa.model.entity.EmployeeEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
+
 
 public class EmployeeController {
 
@@ -28,27 +30,36 @@ public class EmployeeController {
                 .age(19)
                 .address("경기도시흥시")
                 .salary(100)
-                .department(d)
+//                .department(d)
                 .build();
+        e.setDepartment(d);
         em.persist(e);
+
 
         EmployeeEntity e1= EmployeeEntity.builder()
                 .employeeName("이민영")
                 .age(19)
                 .address("경기도군포시")
                 .salary(200)
-                .department(d)
+//                .department(d)
                 .build();
+        e.setDepartment(d);
         em.persist(e1);
+
 
         EmployeeEntity e2= EmployeeEntity.builder()
                 .employeeName("염상균")
                 .age(19)
                 .address("경기도안양시")
                 .salary(150)
-                .department(d1)
+//                .department(d1)
                 .build();
+        e.setDepartment(d1);
         em.persist(e2);
+
+
+//        d.setEmployeeName(List.of(e,e1));
+//        d1.setEmployeeName(List.of(e2));
         et.commit();
 
     }
