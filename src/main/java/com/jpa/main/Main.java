@@ -17,7 +17,9 @@ StudentController studentController = new StudentController();
 //        studentController.deleteStudent(entityManager, 10L);
 //        studentController.findStudentByNo(entityManager, 10L);
 //        studentController.oneToOneTest(entityManager);
-          studentController.OneToManyTest(entityManager);
+//        studentController.OneToManyTest(entityManager);
+//        studentController.oneToManySelect(entityManager,1L);
+          studentController.oneToManyTest2(entityManager);
 
 BasicJpaController controller = new BasicJpaController();
 //        controller.basicTest(entityManager);

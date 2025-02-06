@@ -104,6 +104,7 @@ public class StudentController {
         et.commit();
     }
 
+    //단반향
     public void OneToManyTest(EntityManager em) {
         EntityTransaction et = em.getTransaction();
         et.begin();
@@ -151,9 +152,77 @@ public class StudentController {
                 .build();
 
         em.persist(classRoomEntity);
+
         et.commit();
 
         ClassRoomEntity classRoom=em.find(ClassRoomEntity.class,1L);
         System.out.println(classRoom);
+    }
+
+    public void oneToManySelect(EntityManager em,Long pk) {
+//      ClassRoomEntity classRoom=em.find(ClassRoomEntity.class,pk);
+//      System.out.println(classRoom);
+//      classRoom.getStudents().stream().forEach(System.out::println);
+
+
+
+        //양방향
+        StudentEntity student=em.find(StudentEntity.class,12L);
+        System.out.println(student);
+        //student.get
+    }
+
+
+
+    public void oneToManyTest2(EntityManager em) {
+        EntityTransaction et = em.getTransaction();
+        et.begin();
+        ClassRoomEntity room= ClassRoomEntity.builder()
+                .classroomName("웹개발")
+                .classroomLevel("10층")
+                .build();
+
+        StudentEntity s=StudentEntity.builder()
+                .studentName("이예진")
+                .grade(1)
+                .classNum(3)
+                .gender(Gender.F)
+                .classroom(room)
+                .build();
+        em.persist(s);
+
+        StudentEntity s1=StudentEntity.builder()
+                .studentName("이민영")
+                .grade(1)
+                .classNum(3)
+                .gender(Gender.F)
+                .classroom(room)
+                .build();
+        em.persist(s1);
+
+        StudentEntity s2=StudentEntity.builder()
+                .studentName("우민혁")
+                .grade(1)
+                .classNum(3)
+                .gender(Gender.M)
+                .classroom(room)
+                .build();
+        em.persist(s2);
+
+        StudentEntity s3=StudentEntity.builder()
+                .studentName("정다인")
+                .grade(1)
+                .classNum(3)
+                .gender(Gender.F)
+                .classroom(room)
+                .build();
+        em.persist(s3);
+
+        em.persist(room);
+        et.commit();
+
+        em.clear();
+        StudentEntity findStudent=em.find(StudentEntity.class,12L);
+        System.out.println(findStudent);
     }
 }

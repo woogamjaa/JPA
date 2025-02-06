@@ -51,5 +51,10 @@ public class StudentEntity {
     @JoinColumn(name="locker_no", unique=true)
     private LockerEntity locker;
 
+    @ManyToOne
+    private ClassRoomEntity classroom; //포린티 컬럼이 들어가는건 다대일에 서 다 쪽이다.
+
+
+
 
 }

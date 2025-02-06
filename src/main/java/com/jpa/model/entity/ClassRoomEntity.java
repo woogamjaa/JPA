@@ -1,10 +1,7 @@
 package com.jpa.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -28,8 +25,12 @@ public class ClassRoomEntity {
     private String classroomLevel;
 
     //학생들
-    @OneToMany //단방향 설정.
-    private List<StudentEntity> students;
+//    @OneToMany //단방향 설정.
+//    private List<StudentEntity> students;
 
+
+    @ToString.Exclude //json 때 문제 생길 수 있음.
+    @OneToMany(mappedBy="classroom")//양방향 설정.
+    private List<StudentEntity> students;
 
 }
