@@ -224,5 +224,9 @@ public class StudentController {
         em.clear();
         StudentEntity findStudent=em.find(StudentEntity.class,12L);
         System.out.println(findStudent);
+        System.out.println(findStudent.getClassroom().getClassroomName());
+
+        ClassRoomEntity findRoom=em.find(ClassRoomEntity.class,1L);
+        findRoom.getStudents().stream().forEach(System.out::println);
     }
 }
