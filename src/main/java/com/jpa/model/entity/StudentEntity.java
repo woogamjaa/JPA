@@ -56,6 +56,6 @@ public class StudentEntity {
 
     @ToString.Exclude
     @ManyToMany(mappedBy = "studentList")
-    private List<SubjectEntity> studentList=new ArrayList<>();
+    private List<SubjectEntity> subjectList=new ArrayList<>();
 
 }
