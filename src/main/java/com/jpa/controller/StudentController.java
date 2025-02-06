@@ -300,7 +300,12 @@ public class StudentController {
         SubjectEntity findSubject=em.find(SubjectEntity.class,1);
         System.out.println(findSubject.getSubjectName()+" "+findSubject.getSubjectFee());
         System.out.println("수강신청학생");
-        findSubject.getStudentList().forEach(System.out::println);
+        findSubject.getStudentList().forEach(student-> {
+            System.out.println("학생 수강신청과목");
+            for(SubjectEntity subject:student.getSubjectList()){
+                System.out.println(subject.getSubjectName()+" "+subject.getSubjectFee());
+            }
+        });
 
     }
 }
