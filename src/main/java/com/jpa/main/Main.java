@@ -1,10 +1,7 @@
 package com.jpa.main;
 
 import com.jpa.common.JPATemplate;
-import com.jpa.controller.BasicJpaController;
-import com.jpa.controller.ConsumerController;
-import com.jpa.controller.EmployeeController;
-import com.jpa.controller.StudentController;
+import com.jpa.controller.*;
 import jakarta.persistence.EntityManager;
 
 public class Main {
@@ -26,8 +23,8 @@ public class Main {
         //        studentController.oneToManySelect(entityManager,1L);
         //        studentController.oneToManyTest2(entityManager);
         //        studentController.manyToManyTest(entityManager);
-                  studentController.signUp(entityManager);
-                  studentController.serchStudent(entityManager,10L);
+//                  studentController.signUp(entityManager);
+//                  studentController.serchStudent(entityManager,10L);
 
         BasicJpaController controller = new BasicJpaController();
         //        controller.basicTest(entityManager);
@@ -42,6 +39,8 @@ public class Main {
         //          c.findEmployee(entityManager, 1L);
         //          c.findDepartment(entityManager, 1L);
 
+        PersistenceParentController ppc = new PersistenceParentController();
+        ppc.testPersistence(entityManager);
 
 
     }
