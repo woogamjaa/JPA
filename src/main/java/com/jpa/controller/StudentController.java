@@ -1,10 +1,7 @@
 package com.jpa.controller;
 
 import com.jpa.common.Gender;
-import com.jpa.model.entity.ClassRoomEntity;
-import com.jpa.model.entity.LockerEntity;
-import com.jpa.model.entity.StudentEntity;
-import com.jpa.model.entity.SubjectEntity;
+import com.jpa.model.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
@@ -308,4 +305,96 @@ public class StudentController {
         });
 
     }
+
+    public void signUp(EntityManager em) {
+        EntityTransaction et = em.getTransaction();
+
+        et.begin();
+
+        SubjectEntity2 math = new SubjectEntity2();
+        math.setSubjectName("수학");
+        math.setSubjectFee(100);
+        em.persist(math);
+
+        SubjectEntity2 java = new SubjectEntity2();
+        java.setSubjectName("자바");
+        java.setSubjectFee(50);
+        em.persist(java);
+
+        SubjectEntity2 bslang = new SubjectEntity2();
+        bslang.setSubjectName("bs어");
+        bslang.setSubjectFee(5);
+        em.persist(bslang);
+
+        StudentEntity2 woo = new StudentEntity2();
+        woo.setStudentName("우감자");
+        woo.setClassNum(1);
+        woo.setGrade(1);
+        woo.setGender(Gender.F);
+        em.persist(woo);
+
+        StudentEntity2 kim = new StudentEntity2();
+        kim.setStudentName("김통통");
+        kim.setClassNum(5);
+        kim.setGrade(3);
+        kim.setGender(Gender.M);
+        em.persist(kim);
+
+        StudentEntity2 choi = new StudentEntity2();
+        choi.setStudentName("최선생");
+        choi.setClassNum(9);
+        choi.setGrade(1);
+        choi.setGender(Gender.M);
+        em.persist(choi);
+
+        et.commit();
+
+        et.begin();
+
+        StudentSubjectJoinEntity sign1=new StudentSubjectJoinEntity();
+        sign1.setStudent(woo);
+        sign1.setSubject(math);
+        sign1.setYear("2025");
+        sign1.setTerm("1");
+        em.persist(sign1);
+
+        StudentSubjectJoinEntity sign2=new StudentSubjectJoinEntity();
+        sign2.setStudent(woo);
+        sign2.setSubject(java);
+        sign2.setYear("2025");
+        sign2.setTerm("1");
+        em.persist(sign2);
+
+        StudentSubjectJoinEntity sign3=new StudentSubjectJoinEntity();
+        sign3.setStudent(choi);
+        sign3.setSubject(math);
+        sign3.setYear("2025");
+        sign3.setTerm("1");
+        em.persist(sign3);
+
+        StudentSubjectJoinEntity sign4=new StudentSubjectJoinEntity();
+        sign4.setStudent(choi);
+        sign4.setSubject(java);
+        sign4.setYear("2025");
+        sign4.setTerm("1");
+        em.persist(sign4);
+
+
+        StudentSubjectJoinEntity sign5=new StudentSubjectJoinEntity();
+        sign4.setStudent(choi);
+        sign4.setSubject(java);
+        sign4.setYear("2025");
+        sign4.setTerm("1");
+        em.persist(sign5);
+
+        et.commit();
+        em.clear();
+
+        StudentEntity2 findStudent=em.find(StudentEntity2.class,10);
+        System.out.println(findStudent.getStudentName());
+        findStudent.getSubjects().forEach(subject -> {
+            System.out.println(subject.getSubject().getSubjectName()+" "+subject.getSubject().getSubjectFee());
+        });
+    }
+
 }

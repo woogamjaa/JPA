@@ -38,14 +38,6 @@ public class StudentEntity {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-//    @Column(columnDefinition = "Date default SYSDATE")
-//    @Temporal(TemporalType.DATE)
-//    private Date birthday;
-
-//    @Embedded
-//    private Address address;
-
-
     @OneToOne
     @JoinColumn(name="locker_no", unique=true)
     private LockerEntity locker;

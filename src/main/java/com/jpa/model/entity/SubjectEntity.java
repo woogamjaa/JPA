@@ -36,11 +36,6 @@ public class SubjectEntity {
     public void setStudentList(List<StudentEntity> students) {
         if (students != null && students.size() > 0) {
             if (studentList.size() > 0) {
-                //            studentList.forEach(studentEntity -> {
-                //                studentList.forEach(studentStudentEntity -> {
-                //                    student.getSubjectList()
-                //                })
-                //            });
                 //기존에 등록된 학생엔티티에서 과목을 삭제
                 for (StudentEntity student : studentList) {
                     student.getSubjectList().remove(this);
