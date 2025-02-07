@@ -39,4 +39,22 @@
         </properties>
 
     </persistence-unit> <!--하나가 아닌 다수로 설정할 수 도 있음.-->
+
+
+    <persistence-unit name="web">
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="jakarta.persistence.jdbc.user" value="web"/>
+            <property name="jakarta.persistence.jdbc.password" value="web"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/> <!--적당한 시점 개행-->
+
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+        </properties>
+    </persistence-unit>
+
 </persistence>
