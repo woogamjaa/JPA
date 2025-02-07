@@ -35,7 +35,7 @@ public class StudentEntity2 {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student" , fetch = FetchType.LAZY)
     private List<StudentSubjectJoinEntity> subjects;
 
 }

@@ -380,21 +380,34 @@ public class StudentController {
         em.persist(sign4);
 
 
-        StudentSubjectJoinEntity sign5=new StudentSubjectJoinEntity();
-        sign4.setStudent(choi);
-        sign4.setSubject(java);
-        sign4.setYear("2025");
-        sign4.setTerm("1");
-        em.persist(sign5);
+//        StudentSubjectJoinEntity sign5=new StudentSubjectJoinEntity();
+//        sign4.setStudent(choi);
+//        sign4.setSubject(java);
+//        sign4.setYear("2025");
+//        sign4.setTerm("1");
+//        em.persist(sign5);
 
         et.commit();
         em.clear();
 
         StudentEntity2 findStudent=em.find(StudentEntity2.class,10);
         System.out.println(findStudent.getStudentName());
-        findStudent.getSubjects().forEach(subject -> {
-            System.out.println(subject.getSubject().getSubjectName()+" "+subject.getSubject().getSubjectFee());
-        });
+
+
+
+
+//        findStudent.getSubjects().forEach(subject -> {
+//            System.out.println(subject.getSubject().getSubjectName()+" "+subject.getSubject().getSubjectFee());
+//        });
+
+
+    }
+
+    public void serchStudent(EntityManager em, Long pk) {
+        StudentEntity2 student =em.find(StudentEntity2.class, pk);
+        System.out.println(student.getStudentName());
+        SubjectEntity2 subject = student.getSubjects().get(0).getSubject();
+
     }
 
 }
