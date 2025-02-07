@@ -6,6 +6,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class WebController {
 
@@ -47,7 +48,7 @@ public class WebController {
         //선택한 컬럼으로 엔티티를 생성해서 반환
         //생성자를 만들어야 한다.
         jsql="""
-             select 
+             select
              NEW com.jpa.jpql.entity.BoardEntity(b.boardTitle, b.boardReadcount, b.boardDate) 
              from board b
              """;
@@ -57,5 +58,26 @@ public class WebController {
         System.out.println("생성자로 가져온 데이터");
         constructorList.forEach(System.out::println);
 
+        query.getSingleResult();//row(엔티티)가 한개만 가져오는 것
+        query.getResultStream()
+                .filter(boardEntity -> boardEntity.getBoardReadcount()>5)
+                .forEach(System.out::println);
+
+    }
+
+    public void useWhere(EntityManager em) {
+        //JPQL에서 WHERE절 사용하기
+        //표준 SQL과 동일하게 사용할 수 있음
+        //WHERE절에 대상이 되는 항목은 엔티티의 필드로 설정
+        String jsql="select b from board b where b.boardWriter.userId='admin'";
+        TypedQuery<BoardEntity> tquery=em.createQuery(jsql,BoardEntity.class);
+        System.out.println(tquery.getResultStream().count());
+
+        //변수를 이용해서 where 사용하기
+        Scanner sc=new Scanner(System.in);
+        String id=sc.nextLine();
+        jsql="select b from board b where b.boardWriter.userId='"+id+"'";
+        tquery=em.createQuery(jsql,BoardEntity.class);
+        tquery.getResultStream().forEach(System.out::println);
     }
 }
