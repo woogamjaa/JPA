@@ -1,8 +1,11 @@
-package com.jpa.model.entity;
+package com.jpa.model.복합키entity;
 
 import com.jpa.common.Gender;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -12,14 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="student_entity2")
-@SequenceGenerator(name="seqstudent2No", sequenceName = "seq_studentno2", allocationSize=1 , initialValue=10)
-public class StudentEntity2 {
+@Table(name="student_entity3")
+@SequenceGenerator(name="seqstudent3No", sequenceName = "seq_studentno3", allocationSize=1 , initialValue=10)
+public class StudentEntity3 {
 
 
     @Id
-    @Column(name="student2_no")
-    @GeneratedValue(generator = "seqstudent2No", strategy = GenerationType.SEQUENCE)
+    @Column(name="student_no")
+    @GeneratedValue(generator = "seqstudent3No", strategy = GenerationType.SEQUENCE)
     private Long studentNo;
 
     @Column(name="student_name", nullable=false)
@@ -36,6 +39,6 @@ public class StudentEntity2 {
     private Gender gender;
 
     @OneToMany(mappedBy = "student")
-    private List<StudentSubjectJoinEntity> subjects;
+    private List<StudentSubjectJoinEntity2> subjects;
 
 }

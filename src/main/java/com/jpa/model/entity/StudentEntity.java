@@ -1,12 +1,10 @@
 package com.jpa.model.entity;
 
 import com.jpa.common.Gender;
-import com.jpa.model.entity.dto.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 

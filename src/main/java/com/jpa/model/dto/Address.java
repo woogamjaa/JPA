@@ -1,4 +1,4 @@
-package com.jpa.model.entity.dto;
+package com.jpa.model.dto;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

@@ -26,7 +26,7 @@ public class Main {
         //        studentController.oneToManySelect(entityManager,1L);
         //        studentController.oneToManyTest2(entityManager);
         //        studentController.manyToManyTest(entityManager);
-                  studentController.signUp(entityManager);
+//                  studentController.signUp(entityManager);
 
         BasicJpaController controller = new BasicJpaController();
         //        controller.basicTest(entityManager);

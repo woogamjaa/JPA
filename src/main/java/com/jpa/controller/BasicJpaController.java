@@ -4,7 +4,6 @@ import com.jpa.common.Gender;
 import com.jpa.common.Role;
 import com.jpa.model.entity.MemberEntity;
 import com.jpa.model.entity.SampleEntity;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 

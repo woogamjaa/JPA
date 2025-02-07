@@ -2,13 +2,12 @@ package com.jpa.model.entity;
 
 import com.jpa.common.Gender;
 import com.jpa.common.Role;
-import com.jpa.model.entity.dto.Address;
+import com.jpa.model.dto.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import oracle.jdbc.proxy.annotation.Pre;
 
 import java.util.Date;
 import java.util.List;

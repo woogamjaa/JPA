@@ -6,8 +6,6 @@ import com.jpa.model.entity.EmployeeEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-import java.util.List;
-
 
 public class EmployeeController {
 
