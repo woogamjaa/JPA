@@ -181,5 +181,32 @@ public class WebController {
 
     }
 
-  
+  public void joinTest(EntityManager em) {
+        //join문 작성하기
+        //게시글, 회원 조회하기
+
+        String jsql= """
+                select b , m
+                from board b join b.boardWriter m  
+                """;
+        Query query=em.createQuery(jsql);
+        List<Object[]> resultList=query.getResultList();
+        resultList.forEach(e-> {
+            Arrays.stream(e).forEach(System.out::println);
+        });
+
+        jsql= """
+            select b , m
+            from board b join fetch b.boardWriter m
+             """;
+
+        query=em.createQuery(jsql);
+        resultList=query.getResultList();
+        resultList.forEach(e->{
+            Arrays.stream(e).forEach(System.out::println);
+        });
+
+
+
+  }
 }

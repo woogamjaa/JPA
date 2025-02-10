@@ -13,7 +13,8 @@ public class WebMain {
 //        wc.basicJPQL(em);
 //        wc.useWhere(em);
 //        wc.groupByFunction(em);
-        wc.paginationTest(em);
+//          wc.paginationTest(em);
+          wc.joinTest(em);
         em.close();
     }
 }
