@@ -13,6 +13,7 @@ import java.util.Date;
 @SequenceGenerator(name="seqBoardCommentNo" , sequenceName = "seq_board_comment_no", allocationSize = 1)
 public class BoardCommentEntity {
     @Id
+    @Column(name= "BOARD_COMMENT_NO")
     @GeneratedValue(generator = "seqBoardCommentNo", strategy = GenerationType.SEQUENCE)
     private Long boardCommentNo;
 

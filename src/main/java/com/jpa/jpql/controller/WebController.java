@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -79,5 +80,34 @@ public class WebController {
         jsql="select b from board b where b.boardWriter.userId='"+id+"'";
         tquery=em.createQuery(jsql,BoardEntity.class);
         tquery.getResultStream().forEach(System.out::println);
+
+
+        //파라미터를 이용해서 처리하기
+        //1. 인덱스로 값을 넣기 -> : ?인덱스 번호  1부터 시작. // 프리페어드스테이드먼트랑 비슷하죠? 1. 2 로 해서 넣었잖아요 .?
+        //2. 이름으로 값을 넣기 -> : 이름
+
+        //setParameter(인덱스번호||이름,대입할 값)메소드를 이용해서 값을 저장
+        jsql="select b from board b where b.boardWriter.userId= ?1";
+        TypedQuery<BoardEntity> tqueryParm=em.createQuery(jsql,BoardEntity.class);
+//        tqueryParm.setParameter(1,"abced" );
+        tqueryParm.setParameter(1, id);
+        Long result=tquery.getResultList().stream().count();
+        System.out.println(result);
+
+
+        jsql="select b.boardTitle, b.boardContent from board b where b.boardWriter.userId=:id"; //key 를 설정한 것
+        Query query2=em.createQuery(jsql);
+        query2.setParameter("id","admin");
+        List<Object[]> resultList=query2.getResultList();
+        resultList.forEach(datas-> {
+            System.out.println(Arrays.toString(datas));
+        });
+
+
+
     }
+
+
+
+
 }
