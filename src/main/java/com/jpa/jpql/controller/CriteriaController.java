@@ -98,15 +98,23 @@ public class CriteriaController {
         Predicate totalwhere = cb.or(where1,where2,where3);
         criteriaQuery.where(totalwhere);
 
-        TypedQuery<BoardEntity> tQuery=em.createQuery(criteriaQuery);
-        tQuery.getResultList().forEach(System.out::println);
+        TypedQuery<BoardEntity> tquery=em.createQuery(criteriaQuery);
+        tquery.getResultList().forEach(System.out::println);
 
 
         //파라미터로 데이터 처리하기
-        //criteriabuilder.parameter() 메소드를 이용
+        //criteriabuilder.parameter("key", 자료형(000.class)) 메소드를 이용
         CriteriaQuery<BoardEntity> criteriaQuery1= cb.createQuery(BoardEntity.class);
+        Root<BoardEntity> board2 = criteriaQuery1.from(BoardEntity.class);
+        Predicate likeWhere=cb.like(board2.get("boardTitle"),cb.parameter(String.class,"title"));
+        // like : title 와 같다.
 
+        criteriaQuery1.select(board2);
+        criteriaQuery1.where(likeWhere);
 
+        tquery=em.createQuery(criteriaQuery1);
+        tquery.setParameter("title", "%안녕%");
+        tquery.getResultList().forEach(System.out::println);
 
     }
 }
