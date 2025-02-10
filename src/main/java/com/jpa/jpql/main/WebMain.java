@@ -21,7 +21,8 @@ public class WebMain {
 
 
         CriteriaController cc= new CriteriaController();
-        cc.basicCriteria(em);
+//        cc.basicCriteria(em);
+        cc.criteriaWhere(em);
         em.close();
     }
 }
