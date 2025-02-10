@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name="member")
 @Table(name="MEMBER")
 public class WebMemberEntity {
     @Id
