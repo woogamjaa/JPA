@@ -206,7 +206,17 @@ public class WebController {
             Arrays.stream(e).forEach(System.out::println);
         });
 
-
+      System.out.println("테스트");
+        jsql= """
+            select b,bc
+            from board b 
+            left join BoardCommentEntity bc on bc.boardRef=b.boardNo
+            """;
+      query=em.createQuery(jsql);
+      resultList=query.getResultList();
+      resultList.forEach(e->{
+          Arrays.stream(e).forEach(System.out::println);
+      });
 
   }
 }

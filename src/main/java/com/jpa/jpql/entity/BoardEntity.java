@@ -41,8 +41,8 @@ public class BoardEntity {
     @Column(name="BOARD_READCOUNT")
     private Integer boardReadcount;
 
-    @OneToMany(mappedBy = "boardRef")
-    private List<BoardCommentEntity> members;
+//    @OneToMany(mappedBy = "boardRef")
+//    private List<BoardCommentEntity> members;
 
     public BoardEntity() {}
     public BoardEntity(String boardTitle,
