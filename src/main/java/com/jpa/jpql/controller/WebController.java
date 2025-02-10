@@ -109,8 +109,8 @@ public class WebController {
 
 
         jsql="""
-             SELECT b 
-             FROM board b 
+             SELECT b
+             FROM board b
              WHERE b.boardNo > :no AND b.boardWriter.userId= :id
              """;
 
@@ -121,8 +121,8 @@ public class WebController {
         //Like문 작성하기.
         //title 게시글 제목에 "첫번째" 포함된 게시글 조회하기.
         jsql="""
-             SELECT b 
-             FROM board b 
+             SELECT b
+             FROM board b
              WHERE b.boardTitle like :title
              """;
 
@@ -132,8 +132,8 @@ public class WebController {
         tqueryParm.getResultList().forEach(System.out::println);
 
         jsql="""
-             SELECT b 
-             FROM board b 
+             SELECT b
+             FROM board b
              WHERE b.boardTitle like :title
              """;
 
@@ -147,9 +147,21 @@ public class WebController {
     }
 
 
+    public void groupByFunction(EntityManager em) {
+        //그룹함수와 group by 절 이용하기
+        //사용자별 게시글 등록수를 출력하기.
 
+        String jsql="""
+            select b.boardWriter.userId, count(b), min(b.boardReadcount),max(b.boardReadcount)
+            from board b
+            group by b.boardWriter.userId
+            order by 2 desc
+            """;
 
-
-
-
+        Query query=em.createQuery(jsql);
+        List<Object[]> resultList=query.getResultList();
+        for(Object[] objects:resultList){
+            System.out.println(Arrays.toString(objects));
+        }
+    }
 }

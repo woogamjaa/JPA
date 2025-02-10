@@ -11,7 +11,8 @@ public class WebMain {
         EntityManager em = JPATemplate.getWebEntityFactory().createEntityManager();
         WebController wc = new WebController();
 //        wc.basicJPQL(em);
-        wc.useWhere(em);
+//        wc.useWhere(em);
+        wc.groupByFunction(em);
         em.close();
     }
 }
