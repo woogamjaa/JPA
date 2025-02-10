@@ -2,6 +2,7 @@ package com.jpa.jpql.controller;
 
 import com.jpa.jpql.entity.BoardEntity;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -26,5 +27,14 @@ public class CriteriaController {
          for(BoardEntity boardEntity : tquery.getResultList()) {
              System.out.println(boardEntity);
          }
+
+         //반환되는 타입이 정해지지 않았을때
+         //Object
+         CriteriaQuery<Object> objectCriteriaQuery = criteriaBuilder.createQuery(Object.class);
+         Root<BoardEntity> root2=objectCriteriaQuery.from(BoardEntity.class);
+         objectCriteriaQuery.select(root2.get("boardTitle"));
+         em.createQuery(objectCriteriaQuery);
+         Query query = em.createQuery(objectCriteriaQuery);
+         query.getResultList().forEach(System.out::println);
     }
 }
