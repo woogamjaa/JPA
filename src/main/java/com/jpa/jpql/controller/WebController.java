@@ -104,8 +104,50 @@ public class WebController {
         });
 
 
+        //다수의 컬럼을 이용해서 where절 만들기.
+        //논리연산자 (and , or ) 이용하기
+
+
+        jsql="""
+             SELECT b 
+             FROM board b 
+             WHERE b.boardNo > :no AND b.boardWriter.userId= :id
+             """;
+
+        tqueryParm=em.createQuery(jsql,BoardEntity.class);
+        tqueryParm.setParameter("no",10);
+        tqueryParm.setParameter("id","admin");
+
+        //Like문 작성하기.
+        //title 게시글 제목에 "첫번째" 포함된 게시글 조회하기.
+        jsql="""
+             SELECT b 
+             FROM board b 
+             WHERE b.boardTitle like :title
+             """;
+
+        tqueryParm=em.createQuery(jsql,BoardEntity.class);
+        tqueryParm.setParameter("title","%가자%");
+        System.out.println("sql 문 이용하기.");
+        tqueryParm.getResultList().forEach(System.out::println);
+
+        jsql="""
+             SELECT b 
+             FROM board b 
+             WHERE b.boardTitle like :title
+             """;
+
+        tqueryParm=em.createQuery(jsql,BoardEntity.class);
+        tqueryParm.setParameter("title","가자");
+        tqueryParm.getResultList().forEach(System.out::println);
+
+
+
 
     }
+
+
+
 
 
 
