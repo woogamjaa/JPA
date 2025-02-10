@@ -6,6 +6,8 @@ import com.jpa.jpql.controller.WebController;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
+import java.util.Map;
+
 public class WebMain {
     public static void main(String[] args) {
 
@@ -22,7 +24,13 @@ public class WebMain {
 
         CriteriaController cc= new CriteriaController();
 //        cc.basicCriteria(em);
-        cc.criteriaWhere(em);
+//        cc.criteriaWhere(em);
+//        cc.orderTest(em);
+          cc.joinTest(em);
+//          cc.dynamicQuery(em, Map.of("title","안녕","writer","admin"));
+//          cc.dynamicQuery(em, Map.of("title","안녕"));
+          cc.dynamicQuery(em, Map.of("writer","abcde","content","게시"));
+
         em.close();
     }
 }

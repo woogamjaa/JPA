@@ -1,17 +1,20 @@
 package com.jpa.jpql.controller;
 
+import com.jpa.jpql.entity.BoardCommentEntity;
 import com.jpa.jpql.entity.BoardEntity;
+import com.jpa.model.entity.MemberEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 
+import java.lang.reflect.Member;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 public class CriteriaController {
@@ -115,6 +118,74 @@ public class CriteriaController {
         tquery=em.createQuery(criteriaQuery1);
         tquery.setParameter("title", "%안녕%");
         tquery.getResultList().forEach(System.out::println);
+
+    }
+
+    public void orderTest(EntityManager em) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<BoardEntity> criteriaQuery = cb.createQuery(BoardEntity.class);
+        Root<BoardEntity> board = criteriaQuery.from(BoardEntity.class);
+        criteriaQuery.select(board);
+
+        //정렬처리하기
+//        criteriaQuery.orderBy(cb.asc(board.get("boardDate")));
+        criteriaQuery.orderBy(cb.desc(board.get("boardDate")));
+
+        TypedQuery<BoardEntity> tquery=em.createQuery(criteriaQuery);
+        tquery.getResultList().forEach(System.out::println);
+    }
+
+    public void joinTest(EntityManager em) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<BoardEntity> criteriaQuery = cb.createQuery(BoardEntity.class);
+        Root<BoardEntity> board = criteriaQuery.from(BoardEntity.class);
+        //Root.join메소드를 이용해서
+        Join<BoardEntity, MemberEntity> join=board.join("boardWriter", JoinType.INNER);
+//        CriteriaQuery<BoardEntity> boardCommentEntityCriteriaQuery=cb.createQuery(BoardEntity.class);
+//        Root<BoardCommentEntity> boardComment=boardCommentEntityCriteriaQuery.from(BoardCommentEntity.class);
+
+
+        Join<BoardEntity, BoardCommentEntity>join2=board.join("members", JoinType.LEFT);
+//        join2.on(cb.equal(board.get("boardNo"),boardComment.get("boardRef")));
+
+
+        criteriaQuery.where(cb.equal(board.get("boardNo"),10));
+        em.createQuery(criteriaQuery).getResultList().forEach(System.out::println);
+    }
+
+    //동적쿼리문 작성하기
+    public void dynamicQuery(EntityManager em, Map<String,String> data) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<BoardEntity> criteriaQuery = cb.createQuery(BoardEntity.class);
+        Root<BoardEntity> board = criteriaQuery.from(BoardEntity.class);
+
+        //제목, 작성자, 내용
+        List<Predicate> where=new ArrayList<>();
+
+        //동적으로 where절 만들기
+        if(data.get("title")!=null) {
+            where.add(cb.like(board.get("boardTitle"),cb.parameter(String.class,"title")));
+        }
+        if(data.get("writer")!=null) {
+            where.add(cb.equal(board.get("boardWriter").get("userId"),cb.parameter(String.class,"writer")));
+        }
+        if(data.get("content")!=null) {
+            where.add(cb.like(board.get("boardContent"),cb.parameter(String.class,"content")));
+        }
+        criteriaQuery.where(where.toArray(new Predicate[0])); // 형변환.
+
+        TypedQuery<BoardEntity> query=em.createQuery(criteriaQuery);
+        if(data.get("title")!=null) {
+            query.setParameter("title", "%"+data.get("title")+"%");
+        }
+        if(data.get("writer")!=null){
+            query.setParameter("writer", data.get("writer"));
+        }
+        if(data.get("content")!=null){
+            query.setParameter("content", "%"+data.get("content")+"%");
+        }
+
+        query.getResultList().forEach(System.out::println);
 
     }
 }
