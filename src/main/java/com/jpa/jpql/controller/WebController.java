@@ -164,4 +164,22 @@ public class WebController {
             System.out.println(Arrays.toString(objects));
         }
     }
+
+    public void paginationTest(EntityManager em) {
+        //페이징처리하기
+        //setFirstResult() : 시작 row 번호 - > 0 부터 시작
+        //maxResult() : 최대수 numPerpage
+        String jsql="select b from board b order by b.boardDate desc";
+        TypedQuery<BoardEntity> tquery=em.createQuery(jsql,BoardEntity.class);
+
+        //페이지처리하기
+        tquery.setFirstResult(0);
+        tquery.setMaxResults(5); // 맨 위의 5개만. cpage , numperpage 등.
+        List<BoardEntity> resultList=tquery.getResultList();
+        System.out.println("페이징처리 결과 : "+tquery.getResultList().size());
+        tquery.getResultList().forEach(System.out::println);
+
+    }
+
+  
 }

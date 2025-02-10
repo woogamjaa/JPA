@@ -12,7 +12,8 @@ public class WebMain {
         WebController wc = new WebController();
 //        wc.basicJPQL(em);
 //        wc.useWhere(em);
-        wc.groupByFunction(em);
+//        wc.groupByFunction(em);
+        wc.paginationTest(em);
         em.close();
     }
 }
